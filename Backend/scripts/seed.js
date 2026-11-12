@@ -55,13 +55,15 @@ async function seed() {
       await client.query(
         `INSERT INTO glucose_readings
            (user_id, glucose_value, measurement_category, reading_date, reading_time)
-         SELECT $1, $2, $3, $4, $5
+         SELECT $1::INTEGER, $2::NUMERIC, $3::VARCHAR(30), $4::DATE, $5::TIME
          WHERE NOT EXISTS (
            SELECT 1 FROM glucose_readings
-           WHERE user_id = $1 AND reading_date = $4 AND measurement_category = $3
+           WHERE user_id = $1::INTEGER
+             AND reading_date = $4::DATE
+             AND measurement_category = $3::VARCHAR(30)
          )
            AND (SELECT COUNT(*) FROM glucose_readings
-                WHERE user_id = $1 AND reading_date = $4) < 4
+                WHERE user_id = $1::INTEGER AND reading_date = $4::DATE) < 4
          ON CONFLICT DO NOTHING`,
         [userId, reading.value, reading.category, readingDate, reading.time],
       );
