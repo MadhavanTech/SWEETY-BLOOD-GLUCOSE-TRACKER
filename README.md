@@ -27,7 +27,7 @@ Backend/
   scripts/seed.js           Create the demo account and sample readings
   src/                      Express routes, controllers, services, and validation
   tests/api.test.js         API tests
-Frended/
+Frontend/
   src/                      React application, pages, components, and styles
   .env.example              Frontend API URL template
 README.md                   Setup, API, test, and demo documentation
@@ -87,13 +87,13 @@ npm run dev
 Run the frontend in a second terminal:
 
 ```powershell
-cd Frended
+cd Frontend
 npm install
 Copy-Item .env.example .env
 npm run dev
 ```
 
-The frontend defaults to `http://localhost:5000/api`; set `VITE_API_URL` in `Frended/.env` only if the backend uses another URL. Open the Vite URL shown in the frontend terminal (normally `http://localhost:5173`).
+The frontend defaults to `http://localhost:5000/api`; set `VITE_API_URL` in `Frontend/.env` only if the backend uses another URL. Open the Vite URL shown in the frontend terminal (normally `http://localhost:5173`).
 
 ## Demo login
 
@@ -142,7 +142,7 @@ npm test
 Run frontend lint and production build:
 
 ```powershell
-cd Frended
+cd Frontend
 npm run lint
 npm run build
 ```
