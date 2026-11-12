@@ -1,0 +1,223 @@
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.intro-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  padding: 40px 6%;
+  background: linear-gradient(
+    135deg,
+    #e7dafe,
+    #f6f1ff,
+    #ffffff,
+    #cdbaf7
+  );
+}
+
+.intro-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.intro-illustration {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.glucose-meter {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 25px rgba(108, 68, 184, 0.19));
+  animation: float 4s ease-in-out infinite;
+}
+
+.intro-details {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10em;
+}
+
+.sweety-logo {
+  width: 115em;
+  height: 15em;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+.intro-details h1 {
+  font-size: 68px;
+  font-weight: 800;
+  color: var(--dark-main);
+  letter-spacing: -2px;
+}
+
+.intro-details h2 {
+  font-size: 25px;
+  font-weight: 600;
+  color: var(--main);
+  margin-top: 5px;
+}
+
+.intro-tagline {
+
+  font-size: 17px;
+  font-weight: 700;
+
+  color: var(--magenta);
+  margin-top: 25px;
+}
+
+.intro-description {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text);
+  margin-top: 35px;
+}
+
+.get-started {
+  margin-top: 30px;
+  padding: 15px 42px;
+  border: none;
+  border-radius: 35px;
+  background: linear-gradient(
+    135deg,
+    var(--magenta),
+    var(--indigo)
+  );
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(108, 68, 184, 0.3);
+  transition: all 0.3s ease;
+}
+
+.get-started span {
+  margin-left: 10px;
+}
+
+.get-started:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(108, 68, 184, 0.4);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.intro-page::before {
+  content: "";
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  background: rgba(205, 186, 247, 0.35);
+  border-radius: 50%;
+  top: -180px;
+  left: -120px;
+}
+
+.intro-page::after {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: rgba(129, 85, 214, 0.15);
+  border-radius: 50%;
+  bottom: -200px;
+  right: -100px;
+}
+
+@media (max-width: 900px) {
+  .intro-content {
+    gap: 25px;
+  }
+
+  .intro-details h1 {
+    font-size: 52px;
+  }
+
+  .intro-details h2 {
+    font-size: 20px;
+  }
+
+  .glucose-meter {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 650px) {
+  .intro-page {
+    padding: 35px 20px;
+  }
+
+  .intro-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .intro-illustration {
+    width: 100%;
+  }
+
+  .glucose-meter {
+    max-width: 260px;
+  }
+
+  .sweety-logo {
+    width: 85px;
+    height: 85px;
+  }
+
+  .intro-details h1 {
+    font-size: 45px;
+  }
+
+  .intro-details h2 {
+    font-size: 19px;
+  }
+
+  .intro-tagline {
+    font-size: 14px;
+    margin-top: 18px;
+  }
+
+  .intro-description {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+
+  .get-started {
+    padding: 13px 35px;
+    font-size: 15px;
+  }
+}

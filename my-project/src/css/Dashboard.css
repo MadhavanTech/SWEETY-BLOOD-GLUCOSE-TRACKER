@@ -1,0 +1,748 @@
+.dashboard_page {
+  --bg: #f8f7fc;
+  --card: #fff;
+  --text: #24213a;
+  --muted: #89869b;
+  --link: #8b5cf6;
+  --main: #8b5cf6;
+  --main-light: #a78bfa;
+  --magenta: #f472b6;
+  --dark-main: #24213a;
+  --border: #ebe8f3;
+  --soft: #f5f0ff;
+  --gradient-main: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 55%, #f472b6 100%);
+  --gradient-button: linear-gradient(90deg, #8b5cf6 0%, #6f4acb 100%);
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.tracker_app.is_dark .dashboard_page {
+  --bg: #130d2e;
+  --card: #1d1445;
+  --text: #efeaff;
+  --muted: #a9a0d6;
+  --link: #cdb8fa;
+  --main: #bda0ff;
+  --main-light: #cdb8fa;
+  --magenta: #e49acb;
+  --dark-main: #efeaff;
+  --border: #342a70;
+  --soft: #261a5c;
+  --gradient-main: linear-gradient(135deg, #6c44b8 0%, #8155d6 55%, #8529af 100%);
+  --gradient-button: linear-gradient(90deg, #7f1b8c 0%, #17137d 100%);
+}
+
+.dashboard_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0;
+}
+
+.dashboard_header h1 {
+  margin: 0.1rem 0 0.25rem;
+  color: var(--dark-main);
+  font-size: clamp(1.7rem, 2.5vw, 2.2rem);
+  line-height: 1.15;
+}
+
+.dashboard_header .eyebrow {
+  margin-bottom: 0.25rem;
+}
+
+.dashboard_header .muted_text {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.profile_badge {
+  display: inline-flex;
+  flex: 0 0 44px;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  background: var(--gradient-main);
+  box-shadow: 0 6px 16px rgba(108, 68, 184, 0.2);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.profile_badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 20px rgba(108, 68, 184, 0.26);
+}
+
+.summary_grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.summary_card {
+  display: flex;
+  min-width: 0;
+  min-height: 104px;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 8px 22px rgba(36, 33, 58, 0.055);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.summary_card:hover {
+  transform: translateY(-3px);
+  border-color: #d6c6f5;
+  box-shadow: 0 14px 28px rgba(91, 67, 144, 0.12);
+}
+
+.summary_pink {
+  background: linear-gradient(135deg, #fff, #fff4f9);
+}
+
+.summary_blue {
+  background: linear-gradient(135deg, #fff, #f3f5ff);
+}
+
+.summary_lilac {
+  background: linear-gradient(135deg, #fff, #f6f1ff);
+}
+
+.summary_icon {
+  display: grid;
+  flex: 0 0 50px;
+  width: 50px;
+  height: 50px;
+  place-items: center;
+  border: 1px solid rgba(139, 92, 246, 0.1);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--main);
+}
+
+.summary_icon svg {
+  width: 25px;
+  height: 25px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.summary_pink .summary_icon {
+  color: #db5d99;
+}
+
+.summary_blue .summary_icon {
+  color: #6f74ce;
+}
+
+.summary_card_content {
+  min-width: 0;
+}
+
+.summary_card p,
+.summary_card small {
+  display: block;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.summary_card strong {
+  display: block;
+  overflow: hidden;
+  margin: 0.22rem 0;
+  color: var(--text);
+  font-size: clamp(1.05rem, 1.25vw, 1.3rem);
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.content_card {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: 0 12px 30px rgba(36, 33, 58, 0.06);
+}
+
+.trend_card {
+  display: flex;
+  min-height: 280px;
+  flex-direction: column;
+  padding: 1.1rem 1.25rem 0.85rem;
+}
+
+.trend_card .section_heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.trend_card .section_heading h2,
+.weekly_summary .section_heading h2,
+.health_tip h2 {
+  margin: 0;
+  color: var(--dark-main);
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.trend_card .section_heading .eyebrow,
+.weekly_summary .section_heading .eyebrow,
+.health_tip .eyebrow {
+  margin: 0 0 0.2rem;
+  color: var(--main);
+  font-size: 0.64rem;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+}
+
+.text_link {
+  color: var(--link);
+  font-size: 0.84rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.text_link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.chart_controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.chart_controls .period_tabs {
+  display: inline-flex;
+  gap: 0.2rem;
+  padding: 0.22rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #f5f2fb;
+}
+
+.chart_controls .period_tabs button {
+  min-height: 34px;
+  padding: 0.4rem 0.85rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 650;
+  cursor: pointer;
+  transition: color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+
+.chart_controls .period_tabs button:hover:not(.selected) {
+  background: #ece6f7;
+  color: var(--dark-main);
+}
+
+.chart_controls .period_tabs button.selected {
+  background: var(--gradient-main);
+  box-shadow: 0 4px 10px rgba(108, 68, 184, 0.18);
+  color: #fff;
+}
+
+.chart_controls button:focus-visible,
+.chart_date_range input:focus-visible,
+.health_tip a:focus-visible {
+  outline: 3px solid rgba(139, 92, 246, 0.35);
+  outline-offset: 2px;
+}
+
+.chart_date_range {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.chart_date_range .form_label {
+  gap: 0.2rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 650;
+}
+
+.chart_date_range input {
+  min-height: 34px;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.76rem;
+}
+
+.chart_container {
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.glucose_chart {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  overflow: visible;
+}
+
+.chart_gridline {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.chart_vertical_gridline {
+  stroke: var(--border);
+  stroke-dasharray: 3 6;
+  stroke-width: 1;
+}
+
+.chart_line {
+  fill: none;
+  stroke: var(--main);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3.5;
+}
+
+.chart_dot {
+  fill: #fff;
+  stroke: var(--main);
+  stroke-width: 3;
+  cursor: help;
+  transition: r 150ms ease, fill 150ms ease;
+}
+
+.chart_dot:hover {
+  r: 7;
+  fill: #f3eaff;
+}
+
+.chart_label {
+  fill: var(--muted);
+  font-size: 11px;
+}
+
+.chart_value {
+  fill: var(--text);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.empty_chart,
+.empty_state {
+  display: grid;
+  justify-items: center;
+  gap: 0.8rem;
+  padding: 2rem 1rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.empty_chart {
+  min-height: 0;
+  flex: 1;
+  padding: 0.75rem;
+}
+
+.empty_chart p,
+.empty_state p {
+  margin: 0;
+}
+
+.empty_chart .button_primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0.55rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--gradient-main);
+  color: #fff;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.empty_state h2 {
+  margin: 0;
+  color: var(--dark-main);
+  font-size: 1.1rem;
+}
+
+.dashboard_bottom_grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  min-height: 0;
+  gap: 1rem;
+}
+
+.dashboard_bottom_grid > .content_card {
+  min-height: 0;
+  overflow: hidden;
+  padding: 0.8rem 0.9rem;
+}
+
+.weekly_summary {
+  display: flex;
+  flex-direction: column;
+}
+
+.weekly_summary .section_heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.45rem;
+}
+
+.weekly_summary_icon {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  stroke: var(--main);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.weekly_summary_grid {
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.weekly_summary_metric {
+  display: grid;
+  min-width: 0;
+  gap: 0.22rem;
+}
+
+.weekly_summary_metric + .weekly_summary_metric {
+  padding-left: 0.85rem;
+  border-left: 1px solid var(--border);
+}
+
+.weekly_summary_metric span,
+.weekly_summary_metric small,
+.weekly_summary_note {
+  color: var(--muted);
+  font-size: 0.7rem;
+  line-height: 1.35;
+}
+
+.weekly_summary_metric strong {
+  color: var(--text);
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+  line-height: 1.25;
+}
+
+.weekly_summary_metric .weekly_summary_change {
+  color: var(--main);
+  font-size: 1.2rem;
+}
+
+.weekly_summary_trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.weekly_summary_trend span {
+  color: inherit;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.weekly_summary_trend.higher {
+  color: #b4533c;
+}
+
+.weekly_summary_trend.lower {
+  color: #47866a;
+}
+
+.weekly_summary_trend.unchanged {
+  color: var(--main);
+}
+
+.weekly_summary_note {
+  margin: 0.25rem 0 0;
+  font-size: 0.64rem;
+}
+
+.health_tip {
+  display: flex;
+  align-items: stretch;
+  border-color: #e8dff8;
+  background: linear-gradient(135deg, #fff 0%, #fbf8ff 100%);
+}
+
+.health_tip_content {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  grid-template-rows: auto 1fr auto;
+  gap: 0.25rem;
+}
+
+.health_tip_heading {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.health_tip h2 {
+  color: var(--dark-main);
+  font-size: 1.1rem;
+}
+
+.health_tip_current {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  color: var(--text);
+  font-size: 0.86rem;
+}
+
+.health_tip_message {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 0.25rem;
+}
+
+.health_tip_status {
+  font-size: 0.98rem;
+}
+
+.health_tip_status.severe_low,
+.health_tip_status.critical,
+.health_tip_status.very_high {
+  color: #b4233c;
+}
+
+.health_tip_status.low,
+.health_tip_status.high {
+  color: #9a5c00;
+}
+
+.health_tip_status.in_target {
+  color: #28774e;
+}
+
+.health_tip_current img {
+  display: block;
+  flex: 0 0 68px;
+  width: 68px;
+  height: 68px;
+  object-fit: contain;
+}
+
+.health_tip_empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.health_tip .health_tip_note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.63rem;
+  line-height: 1.3;
+}
+
+.dashboard_page:has(.trend_card) {
+  min-height: 0;
+}
+
+@media (min-width: 1100px) and (min-height: 680px) {
+  .dashboard_page {
+    height: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto minmax(0, 1fr) minmax(168px, 0.62fr);
+    grid-template-areas:
+      "header"
+      "summary"
+      "chart"
+      "bottom";
+    gap: 0.75rem;
+  }
+
+  .dashboard_header {
+    grid-area: header;
+  }
+
+  .summary_grid {
+    grid-area: summary;
+  }
+
+  .trend_card {
+    grid-area: chart;
+  }
+
+  .dashboard_bottom_grid {
+    grid-area: bottom;
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 1099px) {
+  .summary_grid {
+    gap: 0.75rem;
+  }
+
+  .summary_card {
+    min-height: 94px;
+    gap: 0.7rem;
+    padding: 0.8rem;
+  }
+
+  .summary_icon {
+    flex-basis: 44px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .summary_card strong {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard_page {
+    gap: 1rem;
+  }
+
+  .summary_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .summary_card {
+    min-height: 88px;
+  }
+
+  .trend_card {
+    min-height: 360px;
+  }
+
+  .dashboard_bottom_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard_header h1 {
+    font-size: 1.7rem;
+  }
+
+  .dashboard_header .muted_text {
+    font-size: 0.82rem;
+  }
+
+  .summary_grid {
+    gap: 0.7rem;
+  }
+
+  .summary_card {
+    min-height: 82px;
+    padding: 0.75rem;
+  }
+
+  .trend_card {
+    min-height: 350px;
+    padding: 0.9rem;
+  }
+
+  .trend_card .section_heading {
+    margin-bottom: 0.65rem;
+  }
+
+  .chart_controls {
+    align-items: stretch;
+  }
+
+  .chart_controls .period_tabs {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .chart_controls .period_tabs button {
+    padding-inline: 0.45rem;
+  }
+
+  .chart_date_range {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .chart_date_range input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .dashboard_bottom_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard_bottom_grid > .content_card {
+    min-height: 150px;
+    padding: 0.85rem;
+  }
+
+  .weekly_summary_grid {
+    min-height: 76px;
+  }
+
+  .health_tip_current img {
+    flex-basis: 64px;
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .summary_card,
+  .profile_badge,
+  .chart_controls .period_tabs button,
+  .chart_dot {
+    transition: none;
+  }
+}

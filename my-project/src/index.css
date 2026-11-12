@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+:root {
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  --bg: #f1eaff;
+  --app-background: linear-gradient(160deg, #e7dafe, #f6f1ff 55%, #cdbaf7);
+  --card: rgba(255, 255, 255, 0.84);
+  --text: #1d1245;
+  --muted: #6f6a8f;
+  --link: #6c44b8;
+  --main: #6c44b8;
+  --main-light: #8155d6;
+  --magenta: #8529af;
+  --indigo: #17137d;
+  --dark-main: #1f1465;
+  --border: #e3daf8;
+  --soft: #f6f1ff;
+  --gradient-main: linear-gradient(135deg, #8529af 0%, #6c44b8 55%, #8155d6 100%);
+  --gradient-button: linear-gradient(90deg, #7f1b8c 0%, #17137d 100%);
+}

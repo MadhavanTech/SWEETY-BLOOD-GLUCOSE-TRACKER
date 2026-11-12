@@ -1,0 +1,134 @@
+.tracker_app.is_dark {
+  color: var(--text);
+  background: var(--bg);
+}
+
+.tracker_app.is_dark .dashboard_header h1,
+.tracker_app.is_dark .page_header h1,
+.tracker_app.is_dark .section_heading h2,
+.tracker_app.is_dark .health_tip h2,
+.tracker_app.is_dark .empty_state h2,
+.tracker_app.is_dark .logout_dialog h2,
+.tracker_app.is_dark .summary_card strong,
+.tracker_app.is_dark .report_stat strong,
+.tracker_app.is_dark .readings_table td strong,
+.tracker_app.is_dark .profile_information strong {
+  color: var(--text);
+}
+
+.tracker_app.is_dark .content_card,
+.tracker_app.is_dark .logout_dialog {
+  border-color: var(--border);
+  background: var(--card);
+}
+
+.tracker_app.is_dark .summary_pink {
+  border-color: var(--border);
+  background: #38213f;
+}
+
+.tracker_app.is_dark .summary_blue {
+  border-color: var(--border);
+  background: #202950;
+}
+
+.tracker_app.is_dark .summary_lilac,
+.tracker_app.is_dark .health_tip {
+  border-color: var(--border);
+  background: var(--soft);
+}
+
+.tracker_app.is_dark .summary_icon,
+.tracker_app.is_dark .tip_icon {
+  background: var(--soft);
+  color: var(--text);
+}
+
+.tracker_app.is_dark .health_tip_status.severe_low,
+.tracker_app.is_dark .health_tip_status.critical,
+.tracker_app.is_dark .health_tip_status.very_high {
+  color: #ff9aa8;
+}
+
+.tracker_app.is_dark .health_tip_status.low,
+.tracker_app.is_dark .health_tip_status.high {
+  color: #f2c36d;
+}
+
+.tracker_app.is_dark .health_tip_status.in_target {
+  color: #82d6a4;
+}
+
+.tracker_app.is_dark .muted_text,
+.tracker_app.is_dark .summary_card p,
+.tracker_app.is_dark .summary_card small,
+.tracker_app.is_dark .recent_list li span,
+.tracker_app.is_dark .recent_list li strong,
+.tracker_app.is_dark .health_tip p:last-child,
+.tracker_app.is_dark .empty_message,
+.tracker_app.is_dark .empty_state,
+.tracker_app.is_dark .logout_dialog p,
+.tracker_app.is_dark .settings_note,
+.tracker_app.is_dark .profile_information .muted_text,
+.tracker_app.is_dark .preference_row,
+.tracker_app.is_dark .report_stat span {
+  color: var(--muted);
+}
+
+.tracker_app.is_dark .readings_table th {
+  background: var(--soft);
+  color: var(--muted);
+}
+
+.tracker_app.is_dark .readings_table td,
+.tracker_app.is_dark .form_label {
+  color: var(--text);
+}
+
+.tracker_app.is_dark .readings_table th,
+.tracker_app.is_dark .readings_table td,
+.tracker_app.is_dark .recent_list li,
+.tracker_app.is_dark .settings_note,
+.tracker_app.is_dark .preference_row {
+  border-color: var(--border);
+}
+
+.tracker_app.is_dark .form_label input,
+.tracker_app.is_dark .form_label select,
+.tracker_app.is_dark .chart_date_range input {
+  border-color: var(--border);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.tracker_app.is_dark .period_tabs {
+  background: var(--soft);
+}
+
+.tracker_app.is_dark .period_tabs button {
+  color: var(--muted);
+}
+
+.tracker_app.is_dark .period_tabs button.selected {
+  background: var(--gradient-button);
+  color: #fff;
+}
+
+.tracker_app.is_dark .button_secondary {
+  border-color: var(--border);
+  background: var(--soft);
+  color: var(--text);
+}
+
+.tracker_app.is_dark .content_card {
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.2);
+}
+
+.tracker_app.is_dark .button_primary {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.24);
+}
+
+.tracker_app.is_dark .text_link,
+.tracker_app.is_dark .edit_action {
+  color: var(--link);
+}

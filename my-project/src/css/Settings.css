@@ -1,0 +1,619 @@
+
+/* ==============================
+   SWEETY SETTINGS PAGE
+================================ */
+
+.settings-page {
+  min-height: 100vh;
+  width: 100%;
+  padding: 24px;
+  background: #f7f6ff;
+  color: #17143d;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+}
+
+.settings-page * {
+  box-sizing: border-box;
+}
+
+/* Header */
+
+.settings-header {
+  max-width: 850px;
+  margin: 0 auto 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.settings-back {
+  border: none;
+  background: transparent;
+  color: #4c2bb7;
+  cursor: pointer;
+  display: flex;
+  padding: 8px;
+  border-radius: 10px;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.settings-back:hover {
+  background: #f0edff;
+  transform: translateX(-2px);
+}
+
+.settings-back:focus-visible,
+.settings-edit-btn:focus-visible,
+.settings-action-btn:focus-visible,
+.settings-toggle:focus-visible,
+.settings-modal-close:focus-visible,
+.settings-primary-btn:focus-visible,
+.settings-cancel-btn:focus-visible {
+  outline: 3px solid rgba(104, 64, 202, 0.35);
+  outline-offset: 3px;
+}
+
+.settings-brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 19px;
+  font-weight: 800;
+  color: #17143d;
+}
+
+.settings-brand-logo {
+  width: 34px;
+  height: 38px;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 5px rgba(86, 49, 185, 0.16));
+}
+
+.settings-header-spacer {
+  width: 36px;
+}
+
+/* Main Container */
+
+.settings-container {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 30px 32px;
+  background: #ffffff;
+  border: 1px solid #e9e5ff;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(67, 45, 130, 0.07);
+}
+
+/* Page Title */
+
+.settings-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 35px;
+  color: #5932bd;
+}
+
+.settings-title h1 {
+  font-size: 25px;
+  font-weight: 800;
+  color: #17143d;
+  margin: 0;
+}
+
+/* Sections */
+
+.settings-section {
+  margin-bottom: 29px;
+}
+
+.settings-section h2 {
+  font-size: 15px;
+  font-weight: 750;
+  color: #17143d;
+  margin: 0 0 17px;
+}
+
+/* Profile */
+
+.settings-profile {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 14px 0 20px;
+  border-bottom: 1px solid #eeeafb;
+}
+
+.settings-avatar {
+  width: 45px;
+  height: 45px;
+  min-width: 45px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #693bd0, #4823a8);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.settings-profile-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.settings-profile-details h3 {
+  font-size: 14px;
+  margin: 0 0 5px;
+  font-weight: 750;
+  color: #17143d;
+}
+
+.settings-profile-details p {
+  font-size: 12px;
+  margin: 0;
+  color: #77738f;
+  overflow-wrap: anywhere;
+}
+
+.settings-edit-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #f0edff;
+  color: #5631b9;
+  border: 1px solid #dcd4ff;
+  padding: 8px 13px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.settings-edit-btn:hover {
+  background: #e5deff;
+  border-color: #c9bcf5;
+}
+
+/* Options */
+
+.settings-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 54px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eeeafb;
+}
+
+.settings-option-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 650;
+  color: #17143d;
+}
+
+.settings-option-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  background: #f0edff;
+  border-radius: 9px;
+  color: #5631b9;
+}
+
+.settings-action-btn {
+  padding: 8px 12px;
+  border-radius: 7px;
+  border: 1px solid #ded6ff;
+  background: #f4f1ff;
+  color: #5631b9;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.settings-action-btn:hover {
+  background: #e9e2ff;
+  border-color: #c9bcf5;
+}
+
+/* Toggle Switch */
+
+.settings-toggle {
+  width: 43px;
+  height: 24px;
+  border: none;
+  border-radius: 30px;
+  background: #d7d5e1;
+  padding: 3px;
+  cursor: pointer;
+  transition: background 0.25s;
+  flex-shrink: 0;
+  box-shadow: inset 0 0 0 1px rgba(42, 34, 84, 0.06);
+}
+
+.settings-toggle span {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.25s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.settings-toggle.active {
+  background: #6134c7;
+}
+
+.settings-toggle.active span {
+  transform: translateX(19px);
+}
+
+/* Messages */
+
+.settings-message {
+  font-size: 13px;
+  color: #21834a;
+  background: #edfff4;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.settings-error {
+  color: #dc3545;
+  font-size: 12px;
+  margin: 10px 0;
+}
+
+/* ==============================
+   MODALS
+================================ */
+
+.settings-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(20, 15, 55, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.settings-modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 20px 60px rgba(20, 10, 70, 0.2);
+  animation: settingsModalIn 0.2s ease-out;
+}
+
+@keyframes settingsModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.settings-modal-close {
+  position: absolute;
+  right: 17px;
+  top: 17px;
+  background: transparent;
+  border: none;
+  color: #77738f;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.settings-modal-close:hover {
+  background: #f0edff;
+  color: #5631b9;
+}
+
+.settings-modal-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 13px;
+  background: #f0edff;
+  color: #5831bd;
+  display: grid;
+  place-items: center;
+  margin-bottom: 15px;
+}
+
+.settings-modal h2 {
+  font-size: 21px;
+  margin: 0 0 7px;
+  color: #17143d;
+}
+
+.settings-modal > p {
+  font-size: 13px;
+  color: #858197;
+  margin: 0 0 23px;
+}
+
+.settings-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.settings-modal label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #302b56;
+}
+
+.settings-modal input {
+  width: 100%;
+  height: 43px;
+  border: 1px solid #e0dcf2;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 13px;
+  color: #17143d;
+  outline: none;
+  background: #fff;
+}
+
+.settings-modal input:focus {
+  border-color: #6840ca;
+  box-shadow: 0 0 0 3px rgba(104, 64, 202, 0.09);
+}
+
+.settings-password-field {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.settings-password-field input {
+  padding-right: 42px;
+}
+
+.settings-password-field button {
+  position: absolute;
+  right: 12px;
+  border: none;
+  background: transparent;
+  color: #77738f;
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.settings-password-field button:hover {
+  color: #5631b9;
+  background: #f0edff;
+}
+
+.settings-primary-btn,
+.settings-cancel-btn {
+  width: 100%;
+  height: 43px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.settings-primary-btn {
+  margin-top: 10px;
+  background: linear-gradient(135deg, #6739cc, #4925a8);
+  color: #fff;
+  border: none;
+}
+
+.settings-primary-btn:hover {
+  opacity: 0.92;
+}
+
+.settings-primary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.settings-cancel-btn {
+  background: #fff;
+  border: 1px solid #ded8f2;
+  color: #5831bd;
+}
+
+.settings-cancel-btn:hover {
+  background: #f6f3ff;
+}
+
+/* ==============================
+   DARK MODE
+================================ */
+
+.tracker_app.is_dark .settings-page {
+  background: #17152b;
+  color: #f5f3ff;
+}
+
+.tracker_app.is_dark .settings-container {
+  background: #24213c;
+  border-color: #393354;
+}
+
+.tracker_app.is_dark .settings-brand,
+.tracker_app.is_dark .settings-title h1,
+.tracker_app.is_dark .settings-section h2,
+.tracker_app.is_dark .settings-profile-details h3,
+.tracker_app.is_dark .settings-option-left {
+  color: #f5f3ff;
+}
+
+.tracker_app.is_dark .settings-back {
+  color: #d3c5ff;
+}
+
+.tracker_app.is_dark .settings-back:hover {
+  background: #302c49;
+}
+
+.tracker_app.is_dark .settings-profile,
+.tracker_app.is_dark .settings-option {
+  border-color: #393354;
+}
+
+.tracker_app.is_dark .settings-profile-details p,
+.tracker_app.is_dark .settings-modal > p {
+  color: #b5b0cc;
+}
+
+.tracker_app.is_dark .settings-option-icon,
+.tracker_app.is_dark .settings-edit-btn,
+.tracker_app.is_dark .settings-action-btn,
+.tracker_app.is_dark .settings-modal-icon {
+  background: #302c49;
+  border-color: #494366;
+  color: #d3c5ff;
+}
+
+.tracker_app.is_dark .settings-edit-btn:hover,
+.tracker_app.is_dark .settings-action-btn:hover,
+.tracker_app.is_dark .settings-modal-close:hover,
+.tracker_app.is_dark .settings-password-field button:hover {
+  background: #3a3458;
+}
+
+.tracker_app.is_dark .settings-message {
+  background: #203b30;
+  color: #b5ebc9;
+}
+
+.tracker_app.is_dark .settings-modal {
+  background: #24213c;
+}
+
+.tracker_app.is_dark .settings-modal h2,
+.tracker_app.is_dark .settings-modal label {
+  color: #f5f3ff;
+}
+
+.tracker_app.is_dark .settings-modal input {
+  background: #302c49;
+  color: #fff;
+  border-color: #494366;
+}
+
+.tracker_app.is_dark .settings-cancel-btn {
+  background: #302c49;
+  border-color: #494366;
+  color: #d3c5ff;
+}
+
+/* ==============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 600px) {
+  .settings-page {
+    padding: 16px;
+  }
+
+  .settings-container {
+    padding: 23px 18px;
+    border-radius: 14px;
+  }
+
+  .settings-title h1 {
+    font-size: 22px;
+  }
+
+  .settings-profile-details h3 {
+    font-size: 13px;
+  }
+
+  .settings-profile-details p {
+    font-size: 11px;
+  }
+
+  .settings-option-left {
+    font-size: 12px;
+    gap: 9px;
+  }
+
+  .settings-action-btn {
+    font-size: 10px;
+    padding: 8px;
+  }
+
+  .settings-header {
+    margin-bottom: 18px;
+  }
+
+  .settings-brand-logo {
+    width: 30px;
+    height: 34px;
+  }
+
+  .settings-modal {
+    padding: 25px 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .settings-container {
+    padding: 20px 13px;
+  }
+
+  .settings-profile {
+    gap: 8px;
+  }
+
+  .settings-avatar {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+  }
+
+  .settings-edit-btn {
+    padding: 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .settings-back,
+  .settings-edit-btn,
+  .settings-action-btn,
+  .settings-toggle,
+  .settings-toggle span {
+    transition: none;
+  }
+
+  .settings-modal {
+    animation: none;
+  }
+}
