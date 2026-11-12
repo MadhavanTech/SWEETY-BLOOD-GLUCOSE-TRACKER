@@ -36,6 +36,29 @@ function serializeReading(row) {
   };
 }
 
+async function assertCanSave(userId, reading, excludedReadingId) {
+  const values = [userId, reading.date, reading.category];
+  const excludedReading = excludedReadingId === undefined
+    ? ''
+    : ` AND id <> $${values.push(excludedReadingId)}`;
+  const { rows } = await pool.query(
+    `SELECT COUNT(*)::INTEGER AS daily_count,
+            COUNT(*) FILTER (WHERE measurement_category = $3)::INTEGER AS slot_count
+     FROM glucose_readings
+     WHERE user_id = $1 AND reading_date = $2${excludedReading}`,
+    values,
+  );
+  const dailyCount = Number(rows[0].daily_count);
+  const slotCount = Number(rows[0].slot_count);
+
+  if (slotCount > 0) {
+    throw new AppError('A reading already exists for this time slot on this date.', 409);
+  }
+  if (dailyCount >= 4) {
+    throw new AppError('No more than four readings can be saved per day.', 400);
+  }
+}
+
 async function list(userId, { startDate, endDate } = {}) {
   const values = [userId];
   let dateFilter = '';
@@ -61,6 +84,7 @@ async function list(userId, { startDate, endDate } = {}) {
 }
 
 async function create(userId, reading) {
+  await assertCanSave(userId, reading);
   const { rows } = await pool.query(
     `INSERT INTO glucose_readings
        (user_id, glucose_value, measurement_category, reading_date, reading_time)
@@ -85,6 +109,12 @@ async function get(userId, readingId) {
 }
 
 async function update(userId, readingId, reading) {
+  const existingReading = await get(userId, readingId);
+  const keepsSameSlot = existingReading.date === reading.date
+    && existingReading.category === reading.category;
+  if (!keepsSameSlot) {
+    await assertCanSave(userId, reading, readingId);
+  }
   const { rows } = await pool.query(
     `UPDATE glucose_readings
      SET glucose_value = $1, measurement_category = $2, reading_date = $3, reading_time = $4

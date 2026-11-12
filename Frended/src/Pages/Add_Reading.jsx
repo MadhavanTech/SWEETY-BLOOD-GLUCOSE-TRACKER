@@ -45,8 +45,50 @@ const AddReading = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    const glucoseValue = Number(value)
+    if (!value.trim()) {
+      setError('Glucose value is required.')
+      return
+    }
+    if (!Number.isInteger(glucoseValue)) {
+      setError('Glucose value must be a whole number.')
+      return
+    }
+    if (glucoseValue < 40 || glucoseValue > 600) {
+      setError('Glucose value must be between 40 and 600 mg/dL.')
+      return
+    }
+    if (date > todayAsInputDate()) {
+      setError('Reading date cannot be in the future.')
+      return
+    }
+    if (!time) {
+      setError('Time is required.')
+      return
+    }
+    if (!category) {
+      setError('Time slot is required.')
+      return
+    }
+
+    setError('')
     try {
-      const input = { date, time, category, value: Number(value) }
+      const keepsSameSlot = currentReading?.date === date && currentReading?.category === category
+      if (!keepsSameSlot) {
+        const dateQuery = new URLSearchParams({ startDate: date, endDate: date }).toString()
+        const { readings: dayReadings } = await readingsApi.list(dateQuery)
+        const otherReadings = dayReadings.filter((reading) => reading.id !== currentReading?.id)
+        if (otherReadings.some((reading) => reading.category === category)) {
+          setError('A reading already exists for this time slot on this date.')
+          return
+        }
+        if (otherReadings.length >= 4) {
+          setError('No more than four readings can be saved per day.')
+          return
+        }
+      }
+
+      const input = { date, time, category, value: glucoseValue }
       if (currentReading) {
         await readingsApi.update(currentReading.id, input)
       } else {
@@ -78,7 +120,7 @@ const AddReading = () => {
         <label className="form_label reading_field">
           <span className="reading_field_label">Date</span>
           <span className="reading_input_wrap">
-            <input type="date" value={date} onChange={(event) => setDate(event.target.value)} required />
+            <input type="date" value={date} max={todayAsInputDate()} onChange={(event) => setDate(event.target.value)} required />
             <svg className="reading_field_icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <rect x="3.5" y="5" width="17" height="16" rx="3" />
               <path d="M7.5 3.5v3M16.5 3.5v3M3.5 9.5h17M8 13h2M14 13h2M8 17h2" />
@@ -114,10 +156,10 @@ const AddReading = () => {
             </svg>
             <input
               type="number"
-              min="0.1"
-              max="1000"
-              step="0.1"
-              inputMode="decimal"
+              min="40"
+              max="600"
+              step="1"
+              inputMode="numeric"
               placeholder="Enter your reading"
               value={value}
               onChange={(event) => setValue(event.target.value)}

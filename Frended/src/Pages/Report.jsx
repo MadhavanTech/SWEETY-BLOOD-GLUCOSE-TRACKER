@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Download, FileText } from 'lucide-react'
 import {
   CartesianGrid,
@@ -36,6 +36,8 @@ const measurementLabels = {
 const formatGlucose = (value) =>
   value === null || value === undefined ? '—' : Number(value).toFixed(1)
 
+const EMPTY_READINGS = []
+
 const formatShortDate = (date) =>
   new Intl.DateTimeFormat(undefined, { day: 'numeric', month: 'short' })
     .format(new Date(`${date}T00:00:00`))
@@ -47,8 +49,9 @@ const Report = () => {
   const [generatedAt, setGeneratedAt] = useState(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [refreshKey, setRefreshKey] = useState(0)
 
-  const readings = report?.readings || []
+  const readings = report?.readings ?? EMPTY_READINGS
   const summary = report?.summary
   const isMonthlyReport = report?.reportType !== 'daily'
   const dailyTrend = useMemo(() => {
@@ -70,29 +73,40 @@ const Report = () => {
       .sort((left, right) => left.date.localeCompare(right.date))
   }, [readings])
 
-  const generateReport = async () => {
-    setLoading(true)
-    setError('')
-    setReport(null)
-    setGeneratedAt(null)
+  useEffect(() => {
+    let isCurrentRequest = true
 
-    try {
-      let result
-      if (reportType === 'daily') {
-        result = await reportsApi.daily(selectedDate)
-      } else if (reportType === 'month-to-date') {
-        result = await reportsApi.monthToDate()
-      } else {
-        result = await reportsApi.previousMonth()
+    const loadReport = async () => {
+      setLoading(true)
+      setError('')
+      setReport(null)
+      setGeneratedAt(null)
+
+      try {
+        let result
+        if (reportType === 'daily') {
+          result = await reportsApi.daily(selectedDate)
+        } else if (reportType === 'month-to-date') {
+          result = await reportsApi.monthToDate()
+        } else {
+          result = await reportsApi.previousMonth()
+        }
+        if (isCurrentRequest) {
+          setReport(result)
+          setGeneratedAt(new Date())
+        }
+      } catch (requestError) {
+        if (isCurrentRequest) setError(requestError.message)
+      } finally {
+        if (isCurrentRequest) setLoading(false)
       }
-      setReport(result)
-      setGeneratedAt(new Date())
-    } catch (requestError) {
-      setError(requestError.message)
-    } finally {
-      setLoading(false)
     }
-  }
+
+    loadReport()
+    return () => {
+      isCurrentRequest = false
+    }
+  }, [reportType, selectedDate, refreshKey])
 
   const downloadPdf = () => {
     try {
@@ -156,7 +170,7 @@ const Report = () => {
         <button
           type="button"
           className="button_primary report_generate_button"
-          onClick={generateReport}
+          onClick={() => setRefreshKey((key) => key + 1)}
           disabled={loading || (reportType === 'daily' && !selectedDate)}
         >
           <FileText size={17} aria-hidden="true" />
